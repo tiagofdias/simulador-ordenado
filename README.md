@@ -1,14 +1,12 @@
 # Simulador de Domiciliação de Ordenado
 
-Simulador interativo que compara as campanhas de domiciliação de ordenado dos bancos portugueses. Criado pela comunidade [r/BeermoneyTuga](https://www.reddit.com/r/BeermoneyTuga/).
+##  Funcionalidades
 
-## ✨ Funcionalidades
-
-- 🏦 Compara 6 bancos: Bankinter, BPI, Millennium BCP, ABANCA, ActivoBank e Santander
-- 🧮 Cálculo personalizado com base no teu ordenado, idade e saldo
-- 📊 Comparação com Certificados de Aforro
-- 🔗 Partilha de link com os teus dados
-- 🔄 **Atualização automática diária** via GitHub Actions
+- Compara 6 bancos: Bankinter, BPI, Millennium BCP, ABANCA, ActivoBank e Santander
+- Cálculo personalizado com base no teu ordenado, idade e saldo
+- Comparação com Certificados de Aforro
+- Partilha de link com os teus dados
+- **Atualização automática diária** via GitHub Actions
 
 ## 🔄 Atualização Automática
 
@@ -71,7 +69,3 @@ Se precisares de atualizar os dados manualmente (ex: nova campanha), edita o fic
 ## ⚠️ Aviso Legal
 
 Este simulador não constitui aconselhamento financeiro. Os valores são estimativas baseadas nas condições públicas de cada banco. Confirma sempre as condições oficiais antes de aderires.
-
-## 📄 Licença
-
-MIT — Criado pela comunidade r/BeermoneyTuga
