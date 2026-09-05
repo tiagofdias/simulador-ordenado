@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-09-05",
-  "dataVersion": 5,
+  "dataVersion": 6,
   "caRate": {
     "serieF": {
       "baseRate": 0.025,
@@ -39,34 +39,6 @@
         "hasIS": false
       },
       "youngDiscount": null
-    },
-    {
-      "id": "bpi",
-      "name": "Banco BPI",
-      "expiryDate": "2026-08-31",
-      "url": "https://www.bancobpi.pt/campanha-domiciliar-ordenado",
-      "status": "expired",
-      "statusLabel": "Expirado em 31/08/2026",
-      "minSalary": 900,
-      "bonusType": "voucher",
-      "bonusNote": "Campanha de 300 € em Cartão Continente — EXPIRADA",
-      "conditionNote": "Campanha encerrada em 31/08/2026 com fidelização de 24 meses.",
-      "newClientNote": "Quem não seja titular de conta no BPI há pelo menos 12 meses.",
-      "calcParams": {
-        "type": "fixed_voucher",
-        "voucherAmount": 300
-      },
-      "fees": {
-        "monthly": 5,
-        "hasIS": true,
-        "isRate": 0.04
-      },
-      "youngDiscount": {
-        "maxAge": 30,
-        "feeOverride": 0,
-        "openingVoucher": 50,
-        "note": "Conta AGE (<30 anos): sem comissões + 50 € voucher na abertura"
-      }
     },
     {
       "id": "bcp",
@@ -184,17 +156,45 @@
       }
     },
     {
+      "id": "bpi",
+      "name": "Banco BPI",
+      "expiryDate": "2026-08-31",
+      "url": "https://www.bancobpi.pt/particulares/contas/domiciliar-ordenado",
+      "status": "expired",
+      "statusLabel": "Expirado em 31/08/2026",
+      "minSalary": 900,
+      "bonusType": "voucher",
+      "bonusNote": "Campanha de 300 € em Cartão Continente — EXPIRADA",
+      "conditionNote": "Campanha encerrada em 31/08/2026 com fidelização de 24 meses.",
+      "newClientNote": "Quem não seja titular de conta no BPI há pelo menos 12 meses.",
+      "calcParams": {
+        "type": "fixed_voucher",
+        "voucherAmount": 300
+      },
+      "fees": {
+        "monthly": 5,
+        "hasIS": true,
+        "isRate": 0.04
+      },
+      "youngDiscount": {
+        "maxAge": 30,
+        "feeOverride": 0,
+        "openingVoucher": 50,
+        "note": "Conta AGE (<30 anos): sem comissões + 50 € voucher na abertura"
+      }
+    },
+    {
       "id": "cgd",
       "name": "Caixa Geral de Depósitos",
       "expiryDate": null,
       "url": "https://www.cgd.pt/Particulares/Contas/Pages/Conta-Caixa.aspx",
       "status": "active",
-      "statusLabel": "Condições Permanentes",
+      "statusLabel": "Domiciliação de Ordenado",
       "minSalary": 700,
       "bonusType": "isencao",
-      "bonusNote": "Isenção de comissão de manutenção da Conta Caixa ao domiciliar o ordenado",
+      "bonusNote": "Isenção da comissão de manutenção da Conta Caixa ao domiciliar o ordenado",
       "conditionNote": "Transferência de ordenado igual ou superior ao salário mínimo nacional.",
-      "newClientNote": "Elegível para clientes novos e existentes com Conta Caixa.",
+      "newClientNote": "Elegível para clientes com ordenado domiciliado na Conta Caixa.",
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
@@ -205,10 +205,7 @@
         "monthly": 0,
         "hasIS": false
       },
-      "youngDiscount": {
-        "maxAge": 26,
-        "note": "Conta Caixa M (<26 anos): 100% isenta de manutenção"
-      }
+      "youngDiscount": null
     },
     {
       "id": "novobanco",
@@ -216,12 +213,12 @@
       "expiryDate": null,
       "url": "https://www.novobanco.pt/particulares/solucoes/contas-pacotes",
       "status": "active",
-      "statusLabel": "Condições Permanentes",
+      "statusLabel": "Domiciliação de Ordenado",
       "minSalary": 800,
       "bonusType": "isencao",
-      "bonusNote": "Isenção/desconto da comissão de manutenção com ordenado domiciliado",
+      "bonusNote": "Isenção da comissão de manutenção com domiciliação de ordenado",
       "conditionNote": "Transferência mensal de ordenado igual ou superior a 800 €.",
-      "newClientNote": "Disponível para todos os titulares com conta no Novo Banco.",
+      "newClientNote": "Disponível para clientes com domiciliação de ordenado no Novo Banco.",
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
@@ -240,10 +237,10 @@
       "expiryDate": null,
       "url": "https://www.bancomontepio.pt/particulares/contas/solucao-ordenado",
       "status": "active",
-      "statusLabel": "Condições Permanentes",
+      "statusLabel": "Domiciliação de Ordenado",
       "minSalary": 750,
       "bonusType": "isencao",
-      "bonusNote": "Solução Ordenado com isenção de gestão de conta e descoberto autorizado",
+      "bonusNote": "Solução Ordenado Montepio com isenção de comissão de manutenção",
       "conditionNote": "Domiciliação de ordenado igual ou superior a 750 €/mês.",
       "newClientNote": "Adesão à Solução Ordenado Montepio.",
       "calcParams": {
@@ -264,40 +261,16 @@
       "expiryDate": null,
       "url": "https://www.creditoagricola.pt/para-mim/contas/conta-ordenado",
       "status": "active",
-      "statusLabel": "Condições Permanentes",
+      "statusLabel": "Domiciliação de Ordenado",
       "minSalary": 700,
       "bonusType": "isencao",
-      "bonusNote": "Solução Ordenado CA com isenção de comissão e descoberto ordenado",
-      "conditionNote": "Transferência de ordenado igual ou superior a 700 €/mês numa Caixa Agrícola.",
-      "newClientNote": "Disponível para associados e clientes com conta à ordem.",
+      "bonusNote": "Conta Ordenado CA com isenção de manutenção e descoberto autorizado",
+      "conditionNote": "Transferência de ordenado igual ou superior a 700 €/mês.",
+      "newClientNote": "Clientes com domiciliação de ordenado no Crédito Agrícola.",
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
           { "minSalary": 700, "amount": 0 }
-        ]
-      },
-      "fees": {
-        "monthly": 0,
-        "hasIS": false
-      },
-      "youngDiscount": null
-    },
-    {
-      "id": "bancobig",
-      "name": "Banco BIG",
-      "expiryDate": null,
-      "url": "https://www.big.pt/Contas/ContaOrdem",
-      "status": "active",
-      "statusLabel": "Sem Comissões",
-      "minSalary": 600,
-      "bonusType": "sem_comissoes",
-      "bonusNote": "Conta à Ordem BiG 100% isenta de manutenção + depósitos de boas-vindas",
-      "conditionNote": "Sem comissão de manutenção de conta e acesso a depósitos remunerados.",
-      "newClientNote": "Abertura de conta 100% digital no Banco de Investimento Global.",
-      "calcParams": {
-        "type": "fixed_tiered",
-        "tiers": [
-          { "minSalary": 600, "amount": 0 }
         ]
       },
       "fees": {
@@ -315,135 +288,14 @@
       "statusLabel": "Ativo até 31/12/2026",
       "minSalary": 600,
       "bonusType": "dinheiro",
-      "bonusNote": "Cashback até 200 € no 1.º ano em compras e pagamentos",
-      "conditionNote": "Requer utilização do cartão e pagamentos associados à conta Unibanco.",
-      "newClientNote": "Abertura de conta e adesão ao cartão Unibanco.",
+      "bonusNote": "Cashback até 200 € no 1.º ano em pagamentos e ordenado",
+      "conditionNote": "Requer domiciliação ou pagamentos associados à conta Unibanco.",
+      "newClientNote": "Abertura de conta e adesão à solução de ordenado Unibanco.",
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
           { "minSalary": 600, "amount": 200 }
         ]
-      },
-      "fees": {
-        "monthly": 0,
-        "hasIS": false
-      },
-      "youngDiscount": null
-    },
-    {
-      "id": "bancoctt",
-      "name": "Banco CTT",
-      "expiryDate": null,
-      "url": "https://www.bancoctt.pt/contas-e-cartoes/contas/conta-banco-ctt",
-      "status": "active",
-      "statusLabel": "Sem Comissões Base",
-      "minSalary": 600,
-      "bonusType": "sem_comissoes",
-      "bonusNote": "Conta à ordem sem comissão de manutenção base (com ou sem ordenado)",
-      "conditionNote": "Sem exigência de montante mínimo para isenção base de manutenção.",
-      "newClientNote": "Aberto a todos os novos clientes sem fidelização.",
-      "calcParams": {
-        "type": "fixed_tiered",
-        "tiers": [
-          { "minSalary": 600, "amount": 0 }
-        ]
-      },
-      "fees": {
-        "monthly": 0,
-        "hasIS": false
-      },
-      "youngDiscount": null
-    },
-    {
-      "id": "openbank",
-      "name": "Openbank",
-      "expiryDate": null,
-      "url": "https://www.openbank.pt/conta-corrente",
-      "status": "active",
-      "statusLabel": "Sem Comissões",
-      "minSalary": 600,
-      "bonusType": "sem_comissoes",
-      "bonusNote": "Conta Corrente 100% gratuita + cartão de débito sem anuidade",
-      "conditionNote": "Sem comissões de manutenção e sem exigência de ordenado obrigatório.",
-      "newClientNote": "Abertura de conta 100% digital sem fidelização.",
-      "calcParams": {
-        "type": "fixed_tiered",
-        "tiers": [
-          { "minSalary": 600, "amount": 0 }
-        ]
-      },
-      "fees": {
-        "monthly": 0,
-        "hasIS": false
-      },
-      "youngDiscount": null
-    },
-    {
-      "id": "revolut",
-      "name": "Revolut (IBAN PT50)",
-      "expiryDate": null,
-      "url": "https://www.revolut.com/pt-PT/",
-      "status": "active",
-      "statusLabel": "Sem Comissões (IBAN PT50)",
-      "minSalary": 600,
-      "bonusType": "sem_comissoes",
-      "bonusNote": "Conta Standard sem comissões de manutenção com IBAN Português (PT50)",
-      "conditionNote": "Possibilidade de domiciliar o ordenado diretamente no IBAN nacional PT50.",
-      "newClientNote": "Abertura instantânea via App Revolut.",
-      "calcParams": {
-        "type": "fixed_tiered",
-        "tiers": [
-          { "minSalary": 600, "amount": 0 }
-        ]
-      },
-      "fees": {
-        "monthly": 0,
-        "hasIS": false
-      },
-      "youngDiscount": null
-    },
-    {
-      "id": "n26",
-      "name": "N26 Portugal",
-      "expiryDate": null,
-      "url": "https://n26.com/pt-pt",
-      "status": "active",
-      "statusLabel": "Sem Comissões",
-      "minSalary": 600,
-      "bonusType": "sem_comissoes",
-      "bonusNote": "Conta bancária 100% digital sem comissões de manutenção",
-      "conditionNote": "Possibilidade de domiciliação de ordenado via IBAN europeu (DE) sem custos.",
-      "newClientNote": "Abertura de conta em 8 minutos via App N26.",
-      "calcParams": {
-        "type": "fixed_tiered",
-        "tiers": [
-          { "minSalary": 600, "amount": 0 }
-        ]
-      },
-      "fees": {
-        "monthly": 0,
-        "hasIS": false
-      },
-      "youngDiscount": null
-    },
-    {
-      "id": "traderepublic",
-      "name": "Trade Republic",
-      "expiryDate": null,
-      "url": "https://traderepublic.com/pt-pt",
-      "status": "active",
-      "statusLabel": "Juros no Saldo",
-      "minSalary": 600,
-      "bonusType": "juros",
-      "bonusNote": "3,50% TANB de juros sobre todo o saldo não investido na conta",
-      "conditionNote": "Juros pagos mensalmente sobre o saldo disponível na conta.",
-      "newClientNote": "Disponível para residentes em Portugal.",
-      "calcParams": {
-        "type": "interest",
-        "year1Rate": 0.035,
-        "year2Rate": 0.035,
-        "maxBalance": 50000,
-        "anniversaryBonusGross": 0
       },
       "fees": {
         "monthly": 0,

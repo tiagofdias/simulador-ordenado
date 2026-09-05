@@ -56,39 +56,9 @@
       "description": "Crédito Agrícola — Conta Ordenado",
       "checkFields": ["status", "minSalary"]
     },
-    "bancobig": {
-      "url": "https://www.big.pt/Contas/ContaOrdem",
-      "description": "Banco BIG — Conta à Ordem",
-      "checkFields": ["status", "minSalary"]
-    },
     "unibanco": {
       "url": "https://www.unibanco.pt/contas-e-cartoes/",
       "description": "Unibanco — Cashback e Domiciliação",
-      "checkFields": ["status", "minSalary"]
-    },
-    "bancoctt": {
-      "url": "https://www.bancoctt.pt/contas-e-cartoes/contas/conta-banco-ctt",
-      "description": "Banco CTT — Conta sem comissões base",
-      "checkFields": ["status", "minSalary"]
-    },
-    "openbank": {
-      "url": "https://www.openbank.pt/conta-corrente",
-      "description": "Openbank — Conta Corrente sem comissões",
-      "checkFields": ["status", "minSalary"]
-    },
-    "revolut": {
-      "url": "https://www.revolut.com/pt-PT/",
-      "description": "Revolut Portugal — IBAN PT50 Domiciliação Ordenado",
-      "checkFields": ["status", "minSalary"]
-    },
-    "n26": {
-      "url": "https://n26.com/pt-pt",
-      "description": "N26 Portugal — Conta Digital",
-      "checkFields": ["status", "minSalary"]
-    },
-    "traderepublic": {
-      "url": "https://traderepublic.com/pt-pt",
-      "description": "Trade Republic — Saldo Remunerado",
       "checkFields": ["status", "minSalary"]
     }
   },
