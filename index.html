@@ -131,6 +131,63 @@ body {
   background-color: var(--green);
 }
 
+.bmac-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #000000;
+  background: #FFDD00;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 8px rgba(255, 221, 0, 0.2);
+  white-space: nowrap;
+}
+
+.bmac-button:hover {
+  background: #ffe533;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 221, 0, 0.35);
+}
+
+.support-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.support-card-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.support-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  max-width: 800px;
+}
+
+.support-text strong {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  color: var(--text-primary);
+}
+
+.support-text span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
 /* HERO BANNER */
 .hero-banner {
   background: var(--surface);
@@ -650,9 +707,21 @@ footer {
       <div class="logo-icon">SO</div>
       <span class="logo-text">Simulador de Ordenado</span>
     </a>
-    <div class="meta-status-pill">
-      <span class="status-dot"></span>
-      <span>Atualizado em <strong id="updateDate">05 de setembro de 2026</strong></span>
+    <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+      <div class="meta-status-pill">
+        <span class="status-dot"></span>
+        <span>Atualizado em <strong id="updateDate">05 de setembro de 2026</strong></span>
+      </div>
+      <a href="https://buymeacoffee.com/tiagofdias" target="_blank" rel="noopener noreferrer" class="bmac-button" title="Apoiar este projeto gratuito">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        <span>Pagar um café</span>
+      </a>
     </div>
   </div>
 </div>
@@ -745,11 +814,30 @@ footer {
     <p>Este simulador é uma ferramenta informativa independente. Os cálculos pressupõem o cumprimento das condições oficiais de cada banco. Consulta a Ficha de Informação Simplificada (FIN) oficial no site de cada banco antes da contratação.</p>
   </section>
 
+  <section class="support-card">
+    <div class="support-card-inner">
+      <div class="support-text">
+        <strong>Apoia o Simulador de Ordenado</strong>
+        <span>Esta ferramenta é 100% gratuita, independente e sem comissões nem publicidade. Se te ajudou a escolher a melhor conta e a poupar dinheiro, considera pagar um café!</span>
+      </div>
+      <a href="https://buymeacoffee.com/tiagofdias" target="_blank" rel="noopener noreferrer" class="bmac-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+          <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+          <line x1="6" y1="1" x2="6" y2="4"></line>
+          <line x1="10" y1="1" x2="10" y2="4"></line>
+          <line x1="14" y1="1" x2="14" y2="4"></line>
+        </svg>
+        <span>Oferecer um café</span>
+      </a>
+    </div>
+  </section>
+
 </main>
 
 <footer>
   <div class="layout-container">
-    <p>Simulador de Ordenado · Atualização diária automatizada via GitHub Actions</p>
+    <p>Simulador de Ordenado · Atualização diária automatizada via GitHub Actions · <a href="https://buymeacoffee.com/tiagofdias" target="_blank" rel="noopener noreferrer" style="color: var(--brand); text-decoration: none;">Apoiar o projeto</a></p>
   </div>
 </footer>
 
