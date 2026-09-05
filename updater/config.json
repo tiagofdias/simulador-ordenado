@@ -55,11 +55,6 @@
       "url": "https://www.creditoagricola.pt/para-mim/contas/conta-ordenado",
       "description": "Crédito Agrícola — Conta Ordenado",
       "checkFields": ["status", "minSalary"]
-    },
-    "unibanco": {
-      "url": "https://www.unibanco.pt/contas-e-cartoes/",
-      "description": "Unibanco — Cashback e Domiciliação",
-      "checkFields": ["status", "minSalary"]
     }
   },
   "settings": {

@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-09-05",
-  "dataVersion": 6,
+  "dataVersion": 7,
   "caRate": {
     "serieF": {
       "baseRate": 0.025,
@@ -271,30 +271,6 @@
         "type": "fixed_tiered",
         "tiers": [
           { "minSalary": 700, "amount": 0 }
-        ]
-      },
-      "fees": {
-        "monthly": 0,
-        "hasIS": false
-      },
-      "youngDiscount": null
-    },
-    {
-      "id": "unibanco",
-      "name": "Unibanco (Unicre)",
-      "expiryDate": "2026-12-31",
-      "url": "https://www.unibanco.pt/contas-e-cartoes/",
-      "status": "active",
-      "statusLabel": "Ativo até 31/12/2026",
-      "minSalary": 600,
-      "bonusType": "dinheiro",
-      "bonusNote": "Cashback até 200 € no 1.º ano em pagamentos e ordenado",
-      "conditionNote": "Requer domiciliação ou pagamentos associados à conta Unibanco.",
-      "newClientNote": "Abertura de conta e adesão à solução de ordenado Unibanco.",
-      "calcParams": {
-        "type": "fixed_tiered",
-        "tiers": [
-          { "minSalary": 600, "amount": 200 }
         ]
       },
       "fees": {
