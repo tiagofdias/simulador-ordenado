@@ -986,20 +986,17 @@ function render() {
     };
   });
 
-  evaluated.sort((a, b) => {
-    if (a.isEligible && !b.isEligible) return -1;
-    if (!a.isEligible && b.isEligible) return 1;
-    if (a.isEligible && b.isEligible) return (b.finalValue ?? -9999) - (a.finalValue ?? -9999);
-    return a.bank.minSalary - b.bank.minSalary;
-  });
+  // Filter out offers with 0 € bonus or net profit <= 0 per user requirement
+  const profitableOffers = evaluated.filter(item => item.isEligible && item.finalValue !== null && item.finalValue > 0);
 
-  const eligibleCount = evaluated.filter(e => e.isEligible).length;
-  document.getElementById('resultsCount').textContent = `${eligibleCount} ofertas elegíveis para ${formatMoney(salary)}`;
+  profitableOffers.sort((a, b) => (b.finalValue ?? 0) - (a.finalValue ?? 0));
+
+  document.getElementById('resultsCount').textContent = `${profitableOffers.length} ofertas com bónus/lucro real para ${formatMoney(salary)}`;
 
   let html = '';
   let rankIndex = 1;
 
-  evaluated.forEach(item => {
+  profitableOffers.forEach(item => {
     const { bank, isEligible, finalValue, grossBonus, feesTotal, ageDiscountNote, clawbackPenalty, caDeductionApplied } = item;
 
     let cardRankClass = '';
