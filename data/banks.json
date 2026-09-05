@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-09-05",
-  "dataVersion": 4,
+  "dataVersion": 5,
   "caRate": {
     "serieF": {
       "baseRate": 0.025,
@@ -259,6 +259,78 @@
       "youngDiscount": null
     },
     {
+      "id": "creditoagricola",
+      "name": "Crédito Agrícola",
+      "expiryDate": null,
+      "url": "https://www.creditoagricola.pt/para-mim/contas/conta-ordenado",
+      "status": "active",
+      "statusLabel": "Condições Permanentes",
+      "minSalary": 700,
+      "bonusType": "isencao",
+      "bonusNote": "Solução Ordenado CA com isenção de comissão e descoberto ordenado",
+      "conditionNote": "Transferência de ordenado igual ou superior a 700 €/mês numa Caixa Agrícola.",
+      "newClientNote": "Disponível para associados e clientes com conta à ordem.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 700, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "bancobig",
+      "name": "Banco BIG",
+      "expiryDate": null,
+      "url": "https://www.big.pt/Contas/ContaOrdem",
+      "status": "active",
+      "statusLabel": "Sem Comissões",
+      "minSalary": 600,
+      "bonusType": "sem_comissoes",
+      "bonusNote": "Conta à Ordem BiG 100% isenta de manutenção + depósitos de boas-vindas",
+      "conditionNote": "Sem comissão de manutenção de conta e acesso a depósitos remunerados.",
+      "newClientNote": "Abertura de conta 100% digital no Banco de Investimento Global.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 600, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "unibanco",
+      "name": "Unibanco (Unicre)",
+      "expiryDate": "2026-12-31",
+      "url": "https://www.unibanco.pt/contas-e-cartoes/",
+      "status": "active",
+      "statusLabel": "Ativo até 31/12/2026",
+      "minSalary": 600,
+      "bonusType": "dinheiro",
+      "bonusNote": "Cashback até 200 € no 1.º ano em compras e pagamentos",
+      "conditionNote": "Requer utilização do cartão e pagamentos associados à conta Unibanco.",
+      "newClientNote": "Abertura de conta e adesão ao cartão Unibanco.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 600, "amount": 200 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
       "id": "bancoctt",
       "name": "Banco CTT",
       "expiryDate": null,
@@ -323,6 +395,55 @@
         "tiers": [
           { "minSalary": 600, "amount": 0 }
         ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "n26",
+      "name": "N26 Portugal",
+      "expiryDate": null,
+      "url": "https://n26.com/pt-pt",
+      "status": "active",
+      "statusLabel": "Sem Comissões",
+      "minSalary": 600,
+      "bonusType": "sem_comissoes",
+      "bonusNote": "Conta bancária 100% digital sem comissões de manutenção",
+      "conditionNote": "Possibilidade de domiciliação de ordenado via IBAN europeu (DE) sem custos.",
+      "newClientNote": "Abertura de conta em 8 minutos via App N26.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 600, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "traderepublic",
+      "name": "Trade Republic",
+      "expiryDate": null,
+      "url": "https://traderepublic.com/pt-pt",
+      "status": "active",
+      "statusLabel": "Juros no Saldo",
+      "minSalary": 600,
+      "bonusType": "juros",
+      "bonusNote": "3,50% TANB de juros sobre todo o saldo não investido na conta",
+      "conditionNote": "Juros pagos mensalmente sobre o saldo disponível na conta.",
+      "newClientNote": "Disponível para residentes em Portugal.",
+      "calcParams": {
+        "type": "interest",
+        "year1Rate": 0.035,
+        "year2Rate": 0.035,
+        "maxBalance": 50000,
+        "anniversaryBonusGross": 0
       },
       "fees": {
         "monthly": 0,
