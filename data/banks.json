@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-09-05",
-  "dataVersion": 3,
+  "dataVersion": 4,
   "caRate": {
     "serieF": {
       "baseRate": 0.025,
@@ -182,6 +182,153 @@
           "note": "Conta Jovem (27–30 anos): comissão reduzida 2,08 €/mês com IS"
         }
       }
+    },
+    {
+      "id": "cgd",
+      "name": "Caixa Geral de Depósitos",
+      "expiryDate": null,
+      "url": "https://www.cgd.pt/Particulares/Contas/Pages/Conta-Caixa.aspx",
+      "status": "active",
+      "statusLabel": "Condições Permanentes",
+      "minSalary": 700,
+      "bonusType": "isencao",
+      "bonusNote": "Isenção de comissão de manutenção da Conta Caixa ao domiciliar o ordenado",
+      "conditionNote": "Transferência de ordenado igual ou superior ao salário mínimo nacional.",
+      "newClientNote": "Elegível para clientes novos e existentes com Conta Caixa.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 700, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": {
+        "maxAge": 26,
+        "note": "Conta Caixa M (<26 anos): 100% isenta de manutenção"
+      }
+    },
+    {
+      "id": "novobanco",
+      "name": "Novo Banco",
+      "expiryDate": null,
+      "url": "https://www.novobanco.pt/particulares/solucoes/contas-pacotes",
+      "status": "active",
+      "statusLabel": "Condições Permanentes",
+      "minSalary": 800,
+      "bonusType": "isencao",
+      "bonusNote": "Isenção/desconto da comissão de manutenção com ordenado domiciliado",
+      "conditionNote": "Transferência mensal de ordenado igual ou superior a 800 €.",
+      "newClientNote": "Disponível para todos os titulares com conta no Novo Banco.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 800, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "montepio",
+      "name": "Banco Montepio",
+      "expiryDate": null,
+      "url": "https://www.bancomontepio.pt/particulares/contas/solucao-ordenado",
+      "status": "active",
+      "statusLabel": "Condições Permanentes",
+      "minSalary": 750,
+      "bonusType": "isencao",
+      "bonusNote": "Solução Ordenado com isenção de gestão de conta e descoberto autorizado",
+      "conditionNote": "Domiciliação de ordenado igual ou superior a 750 €/mês.",
+      "newClientNote": "Adesão à Solução Ordenado Montepio.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 750, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "bancoctt",
+      "name": "Banco CTT",
+      "expiryDate": null,
+      "url": "https://www.bancoctt.pt/contas-e-cartoes/contas/conta-banco-ctt",
+      "status": "active",
+      "statusLabel": "Sem Comissões Base",
+      "minSalary": 600,
+      "bonusType": "sem_comissoes",
+      "bonusNote": "Conta à ordem sem comissão de manutenção base (com ou sem ordenado)",
+      "conditionNote": "Sem exigência de montante mínimo para isenção base de manutenção.",
+      "newClientNote": "Aberto a todos os novos clientes sem fidelização.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 600, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "openbank",
+      "name": "Openbank",
+      "expiryDate": null,
+      "url": "https://www.openbank.pt/conta-corrente",
+      "status": "active",
+      "statusLabel": "Sem Comissões",
+      "minSalary": 600,
+      "bonusType": "sem_comissoes",
+      "bonusNote": "Conta Corrente 100% gratuita + cartão de débito sem anuidade",
+      "conditionNote": "Sem comissões de manutenção e sem exigência de ordenado obrigatório.",
+      "newClientNote": "Abertura de conta 100% digital sem fidelização.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 600, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "revolut",
+      "name": "Revolut (IBAN PT50)",
+      "expiryDate": null,
+      "url": "https://www.revolut.com/pt-PT/",
+      "status": "active",
+      "statusLabel": "Sem Comissões (IBAN PT50)",
+      "minSalary": 600,
+      "bonusType": "sem_comissoes",
+      "bonusNote": "Conta Standard sem comissões de manutenção com IBAN Português (PT50)",
+      "conditionNote": "Possibilidade de domiciliar o ordenado diretamente no IBAN nacional PT50.",
+      "newClientNote": "Abertura instantânea via App Revolut.",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 600, "amount": 0 }
+        ]
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
     }
   ]
 }

@@ -35,6 +35,36 @@
       "url": "https://www.santander.pt/campanhas/vantagens-ordenado",
       "description": "Campanha Santander domiciliação de ordenado",
       "checkFields": ["status", "expiryDate", "tiers"]
+    },
+    "cgd": {
+      "url": "https://www.cgd.pt/Particulares/Contas/Pages/Conta-Caixa.aspx",
+      "description": "Caixa Geral de Depósitos — Conta Caixa Ordenado",
+      "checkFields": ["status", "minSalary"]
+    },
+    "novobanco": {
+      "url": "https://www.novobanco.pt/particulares/solucoes/contas-pacotes",
+      "description": "Novo Banco — Contas e Domiciliação de Ordenado",
+      "checkFields": ["status", "minSalary"]
+    },
+    "montepio": {
+      "url": "https://www.bancomontepio.pt/particulares/contas/solucao-ordenado",
+      "description": "Banco Montepio — Solução Ordenado",
+      "checkFields": ["status", "minSalary"]
+    },
+    "bancoctt": {
+      "url": "https://www.bancoctt.pt/contas-e-cartoes/contas/conta-banco-ctt",
+      "description": "Banco CTT — Conta sem comissões base",
+      "checkFields": ["status", "minSalary"]
+    },
+    "openbank": {
+      "url": "https://www.openbank.pt/conta-corrente",
+      "description": "Openbank — Conta Corrente sem comissões",
+      "checkFields": ["status", "minSalary"]
+    },
+    "revolut": {
+      "url": "https://www.revolut.com/pt-PT/",
+      "description": "Revolut Portugal — IBAN PT50 Domiciliação Ordenado",
+      "checkFields": ["status", "minSalary"]
     }
   },
   "settings": {
