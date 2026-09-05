@@ -1,0 +1,46 @@
+{
+  "sources": {
+    "igcp_ca": {
+      "url": "https://www.igcp.pt/pt/menu-lateral/certificados-de-aforro/",
+      "description": "Taxa base dos Certificados de Aforro Série F",
+      "selector": "table",
+      "fallbackSearchQuery": "Certificados Aforro Série F taxa base IGCP site:igcp.pt"
+    },
+    "bankinter": {
+      "url": "https://www.bankinter.pt/dia-a-dia/contas-oferta/conta-mais-ordenado",
+      "description": "Conta Mais Ordenado Bankinter — taxas e condições",
+      "checkFields": ["year1Rate", "year2Rate", "minSalary"]
+    },
+    "bpi": {
+      "url": "https://www.bancobpi.pt/particulares/contas/domiciliar-ordenado",
+      "description": "Campanha BPI domiciliação de ordenado",
+      "checkFields": ["status", "expiryDate"]
+    },
+    "bcp": {
+      "url": "https://www.millenniumbcp.pt/pt/campaigns/salary-direct-deposit",
+      "description": "Campanha Millennium BCP domiciliação de ordenado",
+      "checkFields": ["status", "expiryDate", "percentage", "maxNet"]
+    },
+    "abanca": {
+      "url": "https://www.abanca.pt/pt/contas/campanha-domiciliacao-ordenado/",
+      "description": "Campanha ABANCA domiciliação de ordenado",
+      "checkFields": ["status", "expiryDate", "tiers"]
+    },
+    "activobank": {
+      "url": "https://www.activobank.pt/ordenado",
+      "description": "Campanha ActivoBank domiciliação de ordenado",
+      "checkFields": ["status", "expiryDate", "bonusType"]
+    },
+    "santander": {
+      "url": "https://www.santander.pt/campanhas/vantagens-ordenado",
+      "description": "Campanha Santander domiciliação de ordenado",
+      "checkFields": ["status", "expiryDate", "tiers"]
+    }
+  },
+  "settings": {
+    "staleAfterDays": 30,
+    "userAgent": "Mozilla/5.0 (compatible; SimuladorOrdenado/1.0; +https://github.com/)",
+    "requestTimeoutMs": 15000,
+    "retryCount": 2
+  }
+}

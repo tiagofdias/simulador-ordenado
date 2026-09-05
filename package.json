@@ -1,0 +1,15 @@
+{
+  "name": "simulador-ordenado",
+  "version": "1.0.0",
+  "description": "Simulador de Domiciliação de Ordenado — r/BeermoneyTuga",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update": "node updater/update.js",
+    "serve": "npx -y serve@latest ."
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}

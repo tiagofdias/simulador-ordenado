@@ -1,0 +1,63 @@
+name: 🔄 Atualizar dados dos bancos
+
+on:
+  schedule:
+    # Corre todos os dias às 8:00 UTC (9:00 hora de Portugal)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Permite execução manual no GitHub
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Instalar dependências
+        run: npm ci
+        working-directory: .
+
+      - name: 🔍 Executar script de atualização
+        run: node updater/update.js
+        env:
+          GITHUB_ACTIONS: 'true'
+
+      - name: 📊 Verificar se houve alterações
+        id: check_changes
+        run: |
+          if git diff --quiet data/banks.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "✅ Sem alterações nos dados."
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "📝 Alterações detetadas no banks.json!"
+            git diff data/banks.json
+          fi
+
+      - name: 💾 Commit e push das alterações
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/banks.json updater/logs/
+          git commit -m "🔄 Atualização automática dos dados — $(date +'%Y-%m-%d %H:%M')"
+          git push
+
+      - name: 📋 Resumo
+        run: |
+          echo "### 📊 Resultado da atualização" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check_changes.outputs.changed }}" == "true" ]; then
+            echo "✅ Dados atualizados e publicados com sucesso!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ Sem alterações — os dados já estavam atualizados." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Última execução:** $(date +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY

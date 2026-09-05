@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Simulador de Domiciliação de Ordenado — Comparador Bancário Portugal</title>
+<meta name="description" content="Descobre qual é a melhor domiciliação de ordenado para ti em Portugal. Comparador imparcial e transparente de bónus bancários, comissões e impostos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════════
+   DESIGN SYSTEM — CLEAN MONOCHROMATIC SLATE & ROYAL BLUE PALETTE
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  --bg-dark: #0b0f19;
+  --surface: #151c2c;
+  --surface-alt: #1c263b;
+  --surface-input: #101623;
+  
+  --border: #28354d;
+  --border-strong: #3b4c6e;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  
+  --brand: #3b82f6;
+  --brand-hover: #2563eb;
+  
+  --green: #10b981;
+  --red: #ef4444;
+
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
+  --radius-pill: 100px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  line-height: 1.55;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 4rem;
+  overflow-x: hidden;
+}
+
+.layout-container {
+  max-width: 1480px;
+  width: 94%;
+  margin: 0 auto;
+}
+
+/* TOPBAR */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 15, 25, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.85rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.meta-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--surface);
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--green);
+}
+
+/* HERO BANNER */
+.hero-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-main-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.hero-subtitle {
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 950px;
+}
+
+.hero-subtitle strong {
+  color: var(--text-primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--brand);
+}
+
+.hero-props-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.prop-pill {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+
+/* DASHBOARD LAYOUT */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* SIDEBAR CONTROLS */
+.controls-card {
+  position: sticky;
+  top: 75px;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 20;
+}
+
+.controls-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.controls-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.btn-share {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-share:hover {
+  background: var(--border);
+}
+
+.controls-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.control-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.field-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--brand);
+  font-size: 0.98rem;
+  background: var(--surface-input);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: var(--brand);
+  height: 6px;
+  background: var(--surface-input);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.toggles-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.toggle-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: var(--surface-alt);
+  padding: 0.65rem 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.toggle-label input[type="checkbox"] {
+  margin-top: 0.15rem;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--brand);
+  cursor: pointer;
+}
+
+.mobile-controls-toggle {
+  display: none;
+  width: 100%;
+  background: var(--brand);
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .mobile-controls-toggle { display: flex; }
+  .controls-card { position: relative; top: 0; margin-bottom: 1.25rem; display: none; }
+  .controls-card.open-mobile { display: block; }
+}
+
+/* RESULTS AREA */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.results-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--radius-md);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.results-main-heading {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.results-main-count {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* BANK CARDS GRID */
+.bank-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .bank-grid { grid-template-columns: 1fr; }
+}
+
+.bank-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1.1rem;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.bank-card:hover {
+  border-color: var(--border-strong);
+}
+
+.bank-card.rank-1 {
+  border: 2px solid var(--green);
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, var(--surface) 100%);
+}
+
+.bank-card.rank-2 { border: 1px solid var(--brand); }
+.bank-card.ineligible { opacity: 0.75; background: #101522; border-style: dashed; }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  width: fit-content;
+}
+
+.rank-1 .rank-badge { background: rgba(16, 185, 129, 0.12); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }
+.rank-2 .rank-badge { background: rgba(59, 130, 246, 0.12); color: var(--brand); border: 1px solid rgba(59, 130, 246, 0.3); }
+.rank-3 .rank-badge { background: rgba(148, 163, 184, 0.12); color: var(--text-secondary); border: 1px solid rgba(148, 163, 184, 0.3); }
+
+.bank-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.eligibility-tag.no {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.amount-box {
+  background: var(--surface-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  text-align: right;
+  min-width: 165px;
+  flex-shrink: 0;
+}
+
+.amount-header { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.04em; }
+.amount-main { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--green); line-height: 1.2; white-space: nowrap !important; }
+.amount-main.voucher { color: var(--brand); }
+.amount-main.ineligible-val { color: var(--text-secondary); font-size: 1.15rem; }
+.amount-sub { font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.15rem; }
+
+/* FINANCIAL BREAKDOWN LIST */
+.financial-breakdown-box {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+.breakdown-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.breakdown-label {
+  color: var(--text-secondary);
+}
+
+.breakdown-label strong {
+  color: var(--text-primary);
+}
+
+.val-plus {
+  font-family: var(--font-mono);
+  color: var(--green);
+  font-weight: 700;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+
+.val-minus {
+  font-family: var(--font-mono);
+  color: var(--red);
+  font-weight: 700;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+
+.val-neutral {
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-weight: 700;
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+
+/* HIGHLY STRUCTURED KEY-VALUE CONDITIONS GRID */
+.clean-conditions-box {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.clean-conditions-title {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+
+.kv-condition-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  font-size: 0.83rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 480px) {
+  .kv-condition-row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+.kv-key {
+  font-weight: 600;
+  color: var(--brand);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.kv-val {
+  color: var(--text-secondary);
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  margin-top: auto;
+}
+
+.expiry-text {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-cta:hover {
+  background: var(--brand-hover);
+}
+
+@media (max-width: 480px) {
+  .btn-cta { width: 100%; text-align: center; }
+  .card-header { flex-direction: column; }
+  .amount-box { width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; }
+  .amount-main { font-size: 1.4rem; }
+}
+
+.disclaimer-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-top: 2rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.disclaimer-card h3 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 1.75rem;
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="layout-container topbar-inner">
+    <a href="#" class="logo-wrap">
+      <div class="logo-icon">SO</div>
+      <span class="logo-text">Simulador de Ordenado</span>
+    </a>
+    <div class="meta-status-pill">
+      <span class="status-dot"></span>
+      <span>Atualizado em <strong id="updateDate">05 de setembro de 2026</strong></span>
+    </div>
+  </div>
+</div>
+
+<main class="layout-container">
+  
+  <!-- HERO BANNER -->
+  <section class="hero-banner">
+    <h1 class="hero-main-title">Descobre a Melhor Domiciliação de Ordenado Para Ti</h1>
+    <p class="hero-subtitle">Compara em segundos qual o banco em Portugal que te dá o <strong>maior retorno líquido real</strong> ao domiciliares o teu salário. Simulação 100% transparente com bónus brutos, retenção de IRS (28%), comissões de manutenção acumuladas e custo de oportunidade dos Certificados de Aforro.</p>
+    <div class="hero-props-row">
+      <span class="prop-pill">Imparcial & Independente</span>
+      <span class="prop-pill">Sem Letras Pequenas</span>
+    </div>
+  </section>
+
+  <!-- MOBILE TOGGLE BUTTON FOR PARAMETERS -->
+  <button class="mobile-controls-toggle" onclick="toggleMobileControls()" id="mobileToggleBtn">
+    <span>Alterar Parâmetros (<strong id="mobileSalarySummary">1.500 €/mês</strong>)</span>
+    <span id="mobileToggleIcon">▼</span>
+  </button>
+
+  <!-- DASHBOARD LAYOUT -->
+  <div class="dashboard-layout">
+    
+    <!-- SIDEBAR CONTROLS -->
+    <aside class="controls-card" id="controlsCard">
+      <div class="controls-header">
+        <h2 class="controls-title">Os Teus Dados</h2>
+        <button onclick="copyShareLink()" id="shareBtn" class="btn-share">Copiar link</button>
+      </div>
+
+      <div class="controls-body">
+        <div class="control-field">
+          <div class="field-label">
+            <span>Ordenado Líquido</span>
+            <span class="field-value" id="valSalary">1.500 €</span>
+          </div>
+          <input type="range" id="sliderSalary" min="600" max="5000" step="50" value="1500">
+        </div>
+
+        <div class="control-field">
+          <div class="field-label">
+            <span>Saldo médio que manténs na conta (Bankinter)</span>
+            <span class="field-value" id="valBalance">5.000 €</span>
+          </div>
+          <input type="range" id="sliderBalance" min="0" max="25000" step="500" value="5000">
+        </div>
+
+        <div class="control-field">
+          <div class="field-label">
+            <span>Idade do Titular</span>
+            <span class="field-value" id="valAge">32 anos</span>
+          </div>
+          <input type="range" id="sliderAge" min="18" max="70" step="1" value="32">
+        </div>
+
+        <div class="toggles-group">
+          <label class="toggle-label">
+            <input type="checkbox" id="chkCA" checked>
+            <span>Deduzir Custo de Oportunidade dos Certificados de Aforro Série F <strong id="caRateText">(1,80% líq. p.a.)</strong></span>
+          </label>
+          <label class="toggle-label">
+            <input type="checkbox" id="chkAnniversary">
+            <span>Incluir Bónus de Aniversário de Conta (Bankinter)</span>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT RESULTS CONTAINER -->
+    <section class="results-container">
+      
+      <div class="results-top-bar">
+        <h2 class="results-main-heading">Ranking das Melhores Ofertas</h2>
+        <span class="results-main-count" id="resultsCount">A calcular...</span>
+      </div>
+
+      <!-- BANK CARDS GRID -->
+      <div class="bank-grid" id="bankList">
+        <!-- Cards populated by JS -->
+      </div>
+
+    </section>
+
+  </div>
+
+  <section class="disclaimer-card">
+    <h3>Informação Legal & Transparência</h3>
+    <p>Este simulador é uma ferramenta informativa independente. Os cálculos pressupõem o cumprimento das condições oficiais de cada banco. Consulta a Ficha de Informação Simplificada (FIN) oficial no site de cada banco antes da contratação.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="layout-container">
+    <p>Simulador de Ordenado · Atualização diária automatizada via GitHub Actions</p>
+  </div>
+</footer>
+
+<script>
+// TAX CONSTANTS (PORTUGAL)
+const TAX_IRS = 0.28;
+const NET_FACTOR = 1 - TAX_IRS; // 0.72
+const IS_RATE = 0.04; // Imposto do Selo 4%
+
+let BANKS_DATA = [];
+let CA_DATA = null;
+
+function formatMoney(num) {
+  if (num === null || num === undefined || isNaN(num)) return '—';
+  return num.toLocaleString('pt-PT') + ' €';
+}
+
+function toggleMobileControls() {
+  const card = document.getElementById('controlsCard');
+  const icon = document.getElementById('mobileToggleIcon');
+  card.classList.toggle('open-mobile');
+  if (card.classList.contains('open-mobile')) {
+    icon.textContent = '▲';
+  } else {
+    icon.textContent = '▼';
+  }
+}
+
+function calculateBankOutcome(bank, salary, balance, includeAnniversary, age) {
+  const params = bank.calcParams;
+  if (!params) return { netBonus: 0, grossBonus: 0, feesTotal: 0, ageDiscountNote: null, clawbackPenalty: 0 };
+
+  let gross = 0;
+  let fees = 0;
+  let netBonus = 0;
+  let ageNote = null;
+  let clawback = 0;
+
+  switch (params.type) {
+    case 'interest': {
+      const cappedBalance = Math.min(balance, params.maxBalance || 10000);
+      const netY1 = cappedBalance * params.year1Rate * NET_FACTOR;
+      const netY2 = cappedBalance * params.year2Rate * NET_FACTOR;
+      const annBonusNet = includeAnniversary ? Math.round(params.anniversaryBonusGross * NET_FACTOR) : 0;
+      
+      gross = Math.round(cappedBalance * (params.year1Rate + params.year2Rate)) + (includeAnniversary ? params.anniversaryBonusGross : 0);
+      netBonus = Math.round(netY1 + netY2) + annBonusNet;
+      fees = 0;
+      break;
+    }
+    case 'fixed_voucher': {
+      gross = params.voucherAmount;
+      const isYoung = bank.youngDiscount && age < bank.youngDiscount.maxAge;
+      const extraVoucher = isYoung ? (bank.youngDiscount.openingVoucher || 0) : 0;
+      
+      if (isYoung) {
+        fees = 0;
+        ageNote = bank.youngDiscount.note;
+      } else {
+        const monthlyWithIS = bank.fees.monthly * (bank.fees.hasIS ? (1 + IS_RATE) : 1);
+        fees = Math.round(monthlyWithIS * 24);
+      }
+      gross += extraVoucher;
+      netBonus = Math.round(gross - fees);
+      clawback = gross;
+      break;
+    }
+    case 'percentage_net': {
+      const maxNetValue = Math.min(Math.round(salary * params.percentage), params.maxNet);
+      gross = params.bankPaysIRS ? Math.round(maxNetValue / NET_FACTOR) : maxNetValue;
+      fees = Math.round((bank.fees.maintenanceYearly || 0) * 2) + Math.round((bank.fees.cardYearly || 0) * 2);
+      netBonus = Math.round(maxNetValue - fees);
+      clawback = gross;
+      break;
+    }
+    case 'fixed_tiered': {
+      for (const tier of params.tiers) {
+        if (salary >= tier.minSalary) {
+          gross = tier.amount;
+          break;
+        }
+      }
+      const isYoung = bank.youngDiscount && age < bank.youngDiscount.maxAge;
+      if (isYoung) {
+        fees = 0;
+        ageNote = bank.youngDiscount.note;
+      } else {
+        const freeM = bank.fees.freeMonths || 0;
+        const monthlyWithIS = bank.fees.monthly * (bank.fees.hasIS ? (1 + IS_RATE) : 1);
+        fees = Math.round(monthlyWithIS * (24 - freeM));
+      }
+      netBonus = Math.round(gross - fees);
+      clawback = gross;
+      break;
+    }
+    case 'fixed_voucher_amazon': {
+      gross = params.voucherAmount;
+      fees = 0;
+      netBonus = gross;
+      clawback = 0;
+      break;
+    }
+    case 'fixed_tiered_net': {
+      let netTarget = 0;
+      for (const tier of params.tiers) {
+        if (salary >= tier.minSalary) {
+          netTarget = tier.amount;
+          break;
+        }
+      }
+      gross = params.bankPaysIRS ? Math.round(netTarget / NET_FACTOR) : netTarget;
+      const netReceived = params.bankPaysIRS ? netTarget : Math.round(netTarget * NET_FACTOR);
+
+      const yd = bank.youngDiscount;
+      if (yd) {
+        if (yd.maxAge26 && age < 26) {
+          fees = 0;
+          ageNote = yd.maxAge26.note;
+        } else if (yd.maxAge30 && age < 30) {
+          fees = Math.round(yd.maxAge30.monthly * (24 - (bank.fees.freeMonths || 0)));
+          ageNote = yd.maxAge30.note;
+        } else {
+          fees = Math.round(bank.fees.monthly * (24 - (bank.fees.freeMonths || 0)));
+        }
+      } else {
+        fees = Math.round(bank.fees.monthly * (24 - (bank.fees.freeMonths || 0)));
+      }
+      netBonus = Math.round(netReceived - fees);
+      clawback = gross;
+      break;
+    }
+    default:
+      netBonus = 0;
+  }
+
+  return { netBonus, grossBonus: gross, feesTotal: fees, ageDiscountNote: ageNote, clawbackPenalty: clawback };
+}
+
+async function loadData() {
+  try {
+    const resp = await fetch('data/banks.json?t=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP error ' + resp.status);
+    const data = await resp.json();
+    
+    BANKS_DATA = data.banks;
+    CA_DATA = data.caRate;
+
+    const dateObj = new Date(data.lastUpdated);
+    const dateFormatted = dateObj.toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' });
+    document.getElementById('updateDate').textContent = dateFormatted;
+
+    if (CA_DATA?.serieF) {
+      document.getElementById('caRateText').textContent = `(${CA_DATA.serieF.displayRate} bruta)`;
+    }
+
+    loadUrlParams();
+    render();
+  } catch (err) {
+    console.error('Falha ao carregar dados:', err);
+    document.getElementById('bankList').innerHTML = `
+      <div style="grid-column:1/-1; background:var(--surface); border:1px solid var(--red); padding:1.5rem; border-radius:var(--radius-lg); text-align:center; color:var(--red);">
+        <h3>Erro ao carregar ficheiro de dados</h3>
+        <p style="color:var(--text-secondary); margin-top:0.5rem;">Não foi possível carregar <code>data/banks.json</code>.</p>
+      </div>
+    `;
+  }
+}
+
+function loadUrlParams() {
+  const p = new URLSearchParams(location.search);
+  if (p.get('s')) document.getElementById('sliderSalary').value = p.get('s');
+  if (p.get('b')) document.getElementById('sliderBalance').value = p.get('b');
+  if (p.get('a')) document.getElementById('sliderAge').value = p.get('a');
+  if (p.get('ca') !== null) document.getElementById('chkCA').checked = p.get('ca') === '1';
+  if (p.get('ann')) document.getElementById('chkAnniversary').checked = p.get('ann') === '1';
+}
+
+function copyShareLink() {
+  const u = new URL(location.href.split('?')[0]);
+  u.searchParams.set('s', document.getElementById('sliderSalary').value);
+  u.searchParams.set('b', document.getElementById('sliderBalance').value);
+  u.searchParams.set('a', document.getElementById('sliderAge').value);
+  u.searchParams.set('ca', document.getElementById('chkCA').checked ? '1' : '0');
+  u.searchParams.set('ann', document.getElementById('chkAnniversary').checked ? '1' : '0');
+
+  navigator.clipboard.writeText(u.toString()).then(() => {
+    const btn = document.getElementById('shareBtn');
+    btn.textContent = 'Copiado!';
+    setTimeout(() => { btn.textContent = 'Copiar link'; }, 2500);
+  });
+}
+
+function render() {
+  if (!BANKS_DATA || BANKS_DATA.length === 0) return;
+
+  const salary = +document.getElementById('sliderSalary').value;
+  const balance = +document.getElementById('sliderBalance').value;
+  const age = +document.getElementById('sliderAge').value;
+  const deductCA = document.getElementById('chkCA').checked;
+  const includeAnniversary = document.getElementById('chkAnniversary').checked;
+
+  document.getElementById('valSalary').textContent = formatMoney(salary);
+  document.getElementById('valBalance').textContent = formatMoney(balance);
+  document.getElementById('valAge').textContent = age + ' anos';
+  document.getElementById('mobileSalarySummary').textContent = formatMoney(salary) + '/mês';
+
+  const caBaseRate = CA_DATA ? CA_DATA.serieF.baseRate : 0.025;
+  const caPremY2 = CA_DATA ? CA_DATA.serieF.permanencePremiumYear2 : 0.0025;
+  const caNetY1 = Math.pow(1 + caBaseRate * NET_FACTOR / 4, 4) - 1;
+  const caNetY2 = Math.pow(1 + (caBaseRate + caPremY2) * NET_FACTOR / 4, 4) - 1;
+  const caOpportunityCost = deductCA ? Math.round(balance * (caNetY1 + caNetY2)) : 0;
+
+  // Filter out expired offers (e.g. BPI)
+  const activeBanks = BANKS_DATA.filter(b => b.status !== 'expired');
+
+  const evaluated = activeBanks.map(bank => {
+    const isEligible = salary >= bank.minSalary;
+    const calc = isEligible ? calculateBankOutcome(bank, salary, balance, includeAnniversary, age) : { netBonus: null, grossBonus: 0, feesTotal: 0, ageDiscountNote: null, clawbackPenalty: 0 };
+    
+    let finalValue = calc.netBonus;
+    let caDeductionApplied = 0;
+
+    if (calc.netBonus !== null && deductCA && bank.id === 'bankinter') {
+      finalValue = calc.netBonus - caOpportunityCost;
+      caDeductionApplied = caOpportunityCost;
+    }
+
+    return {
+      bank,
+      isEligible,
+      ...calc,
+      finalValue,
+      caDeductionApplied
+    };
+  });
+
+  evaluated.sort((a, b) => {
+    if (a.isEligible && !b.isEligible) return -1;
+    if (!a.isEligible && b.isEligible) return 1;
+    if (a.isEligible && b.isEligible) return (b.finalValue ?? -9999) - (a.finalValue ?? -9999);
+    return a.bank.minSalary - b.bank.minSalary;
+  });
+
+  const eligibleCount = evaluated.filter(e => e.isEligible).length;
+  document.getElementById('resultsCount').textContent = `${eligibleCount} ofertas elegíveis para ${formatMoney(salary)}`;
+
+  let html = '';
+  let rankIndex = 1;
+
+  evaluated.forEach(item => {
+    const { bank, isEligible, finalValue, grossBonus, feesTotal, ageDiscountNote, clawbackPenalty, caDeductionApplied } = item;
+
+    let cardRankClass = '';
+    let rankBadgeHtml = '';
+
+    if (isEligible) {
+      if (rankIndex === 1) {
+        cardRankClass = 'rank-1';
+        rankBadgeHtml = `<span class="rank-badge">1.º Lugar</span>`;
+      } else if (rankIndex === 2) {
+        cardRankClass = 'rank-2';
+        rankBadgeHtml = `<span class="rank-badge">2.º Lugar</span>`;
+      } else if (rankIndex === 3) {
+        cardRankClass = 'rank-3';
+        rankBadgeHtml = `<span class="rank-badge">3.º Lugar</span>`;
+      }
+      rankIndex++;
+    } else {
+      cardRankClass = 'ineligible';
+    }
+
+    const eligibilityBadge = isEligible 
+      ? ''
+      : `<span class="eligibility-tag no">Requer ${formatMoney(bank.minSalary)}</span>`;
+
+    let amountHtml = '';
+    if (!isEligible) {
+      amountHtml = `
+        <div>
+          <div class="amount-header">Retorno Líquido</div>
+          <div class="amount-main ineligible-val">Não elegível</div>
+        </div>
+        <div class="amount-sub">Mín. ${formatMoney(bank.minSalary)}</div>
+      `;
+    } else if (bank.bonusType === 'voucher') {
+      amountHtml = `
+        <div>
+          <div class="amount-header">Voucher Estimado</div>
+          <div class="amount-main voucher">${formatMoney(finalValue)}</div>
+        </div>
+        <div class="amount-sub">Cartão Continente</div>
+      `;
+    } else if (bank.bonusType === 'voucher_amazon') {
+      amountHtml = `
+        <div>
+          <div class="amount-header">Voucher Amazon.es</div>
+          <div class="amount-main voucher">${formatMoney(finalValue)}</div>
+        </div>
+        <div class="amount-sub">Vale Digital</div>
+      `;
+    } else {
+      amountHtml = `
+        <div>
+          <div class="amount-header">Lucro Líquido Real</div>
+          <div class="amount-main">${formatMoney(finalValue)}</div>
+        </div>
+        <div class="amount-sub">Após impostos e custos</div>
+      `;
+    }
+
+    let breakdownHtml = '';
+    if (isEligible) {
+      breakdownHtml = `
+        <div class="financial-breakdown-box">
+          <div class="breakdown-row">
+            <span class="breakdown-label"><strong>Bónus Bruto Prometido</strong> (${bank.bonusNote})</span>
+            <span class="val-plus">+${formatMoney(grossBonus)}</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="breakdown-label"><strong>Comissões de Manutenção</strong> ${feesTotal > 0 ? '' : '(Isento)'}</span>
+            <span class="${feesTotal > 0 ? 'val-minus' : 'val-neutral'}">${feesTotal > 0 ? '−' + formatMoney(feesTotal) : '0 €'}</span>
+          </div>
+          ${caDeductionApplied > 0 ? `
+          <div class="breakdown-row">
+            <span class="breakdown-label"><strong>Custo Oportunidade Aforro (CA)</strong> (vs Série F 2,5%)</span>
+            <span class="val-minus">−${formatMoney(caDeductionApplied)}</span>
+          </div>` : ''}
+        </div>
+      `;
+    }
+
+    // STRUCTURED KEY-VALUE GRID FOR CLEAN VISUAL CONDITIONS
+    const cleanNotesHtml = `
+      <div class="clean-conditions-box">
+        <div class="clean-conditions-title">Requisitos & Condições — ${bank.name}</div>
+        
+        <div class="kv-condition-row">
+          <span class="kv-key">Transferência</span>
+          <span class="kv-val">${bank.conditionNote}</span>
+        </div>
+        
+        <div class="kv-condition-row">
+          <span class="kv-key">Novo Cliente</span>
+          <span class="kv-val">${bank.newClientNote}</span>
+        </div>
+
+        ${clawbackPenalty > 0 ? `
+        <div class="kv-condition-row">
+          <span class="kv-key">Fidelização</span>
+          <span class="kv-val">Devolução do bónus (${formatMoney(clawbackPenalty)}) se rescindir antecipadamente.</span>
+        </div>` : ''}
+
+        ${ageDiscountNote ? `
+        <div class="kv-condition-row">
+          <span class="kv-key">Vantagem Idade</span>
+          <span class="kv-val">${ageDiscountNote}</span>
+        </div>` : ''}
+      </div>
+    `;
+
+    html += `
+      <div class="bank-card ${cardRankClass}">
+        <div class="card-header">
+          <div class="card-title-group">
+            ${rankBadgeHtml}
+            <div class="bank-title">${bank.name} ${eligibilityBadge}</div>
+          </div>
+          <div class="amount-box">
+            ${amountHtml}
+          </div>
+        </div>
+
+        ${breakdownHtml}
+        ${cleanNotesHtml}
+
+        <div class="card-actions">
+          <div class="expiry-text">
+            Campanha: <strong style="color:var(--text-primary);">${bank.statusLabel}</strong>
+          </div>
+          <a href="${bank.url}" target="_blank" rel="noopener" class="btn-cta">
+            Aderir no ${bank.name}
+          </a>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById('bankList').innerHTML = html;
+}
+
+// Event Listeners
+document.getElementById('sliderSalary').addEventListener('input', render);
+document.getElementById('sliderBalance').addEventListener('input', render);
+document.getElementById('sliderAge').addEventListener('input', render);
+document.getElementById('chkCA').addEventListener('change', render);
+document.getElementById('chkAnniversary').addEventListener('change', render);
+
+// Initialize
+loadData();
+</script>
+</body>
+</html>

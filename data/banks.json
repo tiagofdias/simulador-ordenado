@@ -1,0 +1,187 @@
+{
+  "lastUpdated": "2026-09-05",
+  "dataVersion": 3,
+  "caRate": {
+    "serieF": {
+      "baseRate": 0.025,
+      "permanencePremiumYear2": 0.0025,
+      "taxRate": 0.28,
+      "source": "IGCP",
+      "month": "setembro 2026",
+      "label": "Taxa base CA Série F — setembro 2026",
+      "displayRate": "2,500%",
+      "netYear1Approx": "1,80%",
+      "netYear2Approx": "1,98%"
+    }
+  },
+  "banks": [
+    {
+      "id": "bankinter",
+      "name": "Bankinter",
+      "expiryDate": null,
+      "url": "https://www.bankinter.pt/dia-a-dia/contas-oferta/conta-mais-ordenado",
+      "status": "active",
+      "statusLabel": "Ativo",
+      "minSalary": 750,
+      "bonusType": "juros",
+      "bonusNote": "Juros 5% (ano 1) + 2% (ano 2) sobre saldo máx. 10 000 €",
+      "conditionNote": "Transferência feita pela entidade patronal (código SALA) + 5 compras/semestre no cartão de crédito.",
+      "newClientNote": "Quem não tenha tido conta no Bankinter nos últimos 2 anos.",
+      "calcParams": {
+        "type": "interest",
+        "year1Rate": 0.05,
+        "year2Rate": 0.02,
+        "maxBalance": 10000,
+        "anniversaryBonusGross": 100
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "bpi",
+      "name": "Banco BPI",
+      "expiryDate": "2026-08-31",
+      "url": "https://www.bancobpi.pt/campanha-domiciliar-ordenado",
+      "status": "expired",
+      "statusLabel": "Expirado em 31/08/2026",
+      "minSalary": 900,
+      "bonusType": "voucher",
+      "bonusNote": "Campanha de 300 € em Cartão Continente — EXPIRADA",
+      "conditionNote": "Campanha encerrada em 31/08/2026 com fidelização de 24 meses.",
+      "newClientNote": "Quem não seja titular de conta no BPI há pelo menos 12 meses.",
+      "calcParams": {
+        "type": "fixed_voucher",
+        "voucherAmount": 300
+      },
+      "fees": {
+        "monthly": 5,
+        "hasIS": true,
+        "isRate": 0.04
+      },
+      "youngDiscount": {
+        "maxAge": 30,
+        "feeOverride": 0,
+        "openingVoucher": 50,
+        "note": "Conta AGE (<30 anos): sem comissões + 50 € voucher na abertura"
+      }
+    },
+    {
+      "id": "bcp",
+      "name": "Millennium BCP",
+      "expiryDate": "2026-10-15",
+      "url": "https://www.millenniumbcp.pt/pt/campaigns/salary-direct-deposit",
+      "status": "active",
+      "statusLabel": "Ativo até 15/10/2026",
+      "minSalary": 1000,
+      "bonusType": "dinheiro",
+      "bonusNote": "20% do ordenado líquido (BCP suporta IRS), máx. 500 € líquidos",
+      "conditionNote": "Inscrição via App Millennium + cartão de crédito Classic (~10,40 €/ano).",
+      "newClientNote": "Quem não fosse 1.º titular de conta no BCP em 15/07/2026.",
+      "calcParams": {
+        "type": "percentage_net",
+        "percentage": 0.20,
+        "maxNet": 500,
+        "bankPaysIRS": true
+      },
+      "fees": {
+        "maintenanceYearly": 64.92,
+        "cardYearly": 10.40,
+        "hasIS": true
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "abanca",
+      "name": "ABANCA",
+      "expiryDate": "2027-01-31",
+      "url": "https://www.abanca.pt/pt/contas/campanha-domiciliacao-ordenado/",
+      "status": "active",
+      "statusLabel": "Ativo até 31/01/2027",
+      "minSalary": 850,
+      "bonusType": "dinheiro",
+      "bonusNote": "400 € (ordenado ≥ 1 000 €) ou 250 € (ordenado < 1 000 €)",
+      "conditionNote": "Transferência de ordenado com NIF do trabalhador no descritivo SEPA.",
+      "newClientNote": "Sem conta ativa na ABANCA (elegível se encerrada há mais de 12 meses).",
+      "calcParams": {
+        "type": "fixed_tiered",
+        "tiers": [
+          { "minSalary": 1000, "amount": 400 },
+          { "minSalary": 850, "amount": 250 }
+        ]
+      },
+      "fees": {
+        "monthly": 3,
+        "hasIS": true,
+        "isRate": 0.04,
+        "freeMonths": 12
+      },
+      "youngDiscount": {
+        "maxAge": 28,
+        "feeOverride": 0,
+        "note": "Conta Futuro (<28 anos): sem comissões de manutenção"
+      }
+    },
+    {
+      "id": "activobank",
+      "name": "ActivoBank",
+      "expiryDate": "2026-10-31",
+      "url": "https://www.activobank.pt/ordenado",
+      "status": "active",
+      "statusLabel": "Ativo set–out 2026",
+      "minSalary": 900,
+      "bonusType": "voucher_amazon",
+      "bonusNote": "200 € em Cartão Oferta Amazon.es",
+      "conditionNote": "Código ABORDENADO na App + 3 meses consecutivos ordenado + 2 débitos diretos + Conta PoupeUp.",
+      "newClientNote": "Quem não tenha tido o ordenado domiciliado no ActivoBank nos últimos 24 meses.",
+      "calcParams": {
+        "type": "fixed_voucher_amazon",
+        "voucherAmount": 200
+      },
+      "fees": {
+        "monthly": 0,
+        "hasIS": false
+      },
+      "youngDiscount": null
+    },
+    {
+      "id": "santander",
+      "name": "Santander",
+      "expiryDate": "2026-10-31",
+      "url": "https://www.santander.pt/campanhas/vantagens-ordenado",
+      "status": "active",
+      "statusLabel": "Ativo até 31/10/2026",
+      "minSalary": 850,
+      "bonusType": "dinheiro",
+      "bonusNote": "500 € (ordenado > 1 200 €) ou 100 € (ordenado 850–1 200 €)",
+      "conditionNote": "Adesão à campanha até 31/10/2026 com fidelização de 25 meses.",
+      "newClientNote": "Quem não seja titular de conta Santander (ou conta encerrada antes de 17/08/2024).",
+      "calcParams": {
+        "type": "fixed_tiered_net",
+        "bankPaysIRS": true,
+        "tiers": [
+          { "minSalary": 1200, "amount": 500 },
+          { "minSalary": 850, "amount": 100 }
+        ]
+      },
+      "fees": {
+        "monthly": 7.90,
+        "hasIS": false,
+        "freeMonths": 6
+      },
+      "youngDiscount": {
+        "maxAge26": {
+          "feeOverride": 0,
+          "note": "Conta Jovem (<26 anos): sem comissões de manutenção"
+        },
+        "maxAge30": {
+          "monthly": 2.08,
+          "hasIS": false,
+          "note": "Conta Jovem (27–30 anos): comissão reduzida 2,08 €/mês com IS"
+        }
+      }
+    }
+  ]
+}
