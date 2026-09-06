@@ -2,7 +2,6 @@
 
 ##  Funcionalidades
 
-- Compara 6 bancos: Bankinter, BPI, Millennium BCP, ABANCA, ActivoBank e Santander
 - Cálculo personalizado com base no teu ordenado, idade e saldo
 - Comparação com Certificados de Aforro
 - Partilha de link com os teus dados
