@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-09-06",
-  "dataVersion": 7,
+  "dataVersion": 8,
   "caRate": {
     "serieF": {
       "baseRate": 0.025,
@@ -54,13 +54,13 @@
       "newClientNote": "Quem não fosse 1.º titular de conta no BCP em 15/07/2026.",
       "calcParams": {
         "type": "percentage_net",
-        "percentage": 0.20,
+        "percentage": 0.2,
         "maxNet": 500,
         "bankPaysIRS": true
       },
       "fees": {
         "maintenanceYearly": 64.92,
-        "cardYearly": 10.40,
+        "cardYearly": 10.4,
         "hasIS": true
       },
       "youngDiscount": null
@@ -80,8 +80,14 @@
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
-          { "minSalary": 1000, "amount": 400 },
-          { "minSalary": 850, "amount": 250 }
+          {
+            "minSalary": 1000,
+            "amount": 400
+          },
+          {
+            "minSalary": 850,
+            "amount": 250
+          }
         ]
       },
       "fees": {
@@ -134,12 +140,18 @@
         "type": "fixed_tiered_net",
         "bankPaysIRS": true,
         "tiers": [
-          { "minSalary": 1200, "amount": 500 },
-          { "minSalary": 850, "amount": 100 }
+          {
+            "minSalary": 1200,
+            "amount": 500
+          },
+          {
+            "minSalary": 850,
+            "amount": 100
+          }
         ]
       },
       "fees": {
-        "monthly": 7.90,
+        "monthly": 7.9,
         "hasIS": false,
         "freeMonths": 6
       },
@@ -198,7 +210,10 @@
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
-          { "minSalary": 700, "amount": 0 }
+          {
+            "minSalary": 700,
+            "amount": 0
+          }
         ]
       },
       "fees": {
@@ -222,7 +237,10 @@
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
-          { "minSalary": 800, "amount": 0 }
+          {
+            "minSalary": 800,
+            "amount": 0
+          }
         ]
       },
       "fees": {
@@ -246,7 +264,10 @@
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
-          { "minSalary": 750, "amount": 0 }
+          {
+            "minSalary": 750,
+            "amount": 0
+          }
         ]
       },
       "fees": {
@@ -270,7 +291,10 @@
       "calcParams": {
         "type": "fixed_tiered",
         "tiers": [
-          { "minSalary": 700, "amount": 0 }
+          {
+            "minSalary": 700,
+            "amount": 0
+          }
         ]
       },
       "fees": {
