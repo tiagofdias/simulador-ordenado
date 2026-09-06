@@ -8,51 +8,61 @@
     },
     "bankinter": {
       "url": "https://www.bankinter.pt/dia-a-dia/contas-oferta/conta-mais-ordenado",
+      "fallbackUrl": "https://www.bankinter.pt",
       "description": "Conta Mais Ordenado Bankinter — taxas e condições",
       "checkFields": ["year1Rate", "year2Rate", "minSalary"]
     },
     "bpi": {
       "url": "https://www.bancobpi.pt/particulares/contas/domiciliar-ordenado",
+      "fallbackUrl": "https://www.bancobpi.pt/particulares/contas",
       "description": "Campanha BPI domiciliação de ordenado",
       "checkFields": ["status", "expiryDate"]
     },
     "bcp": {
-      "url": "https://www.millenniumbcp.pt/pt/campaigns/salary-direct-deposit",
+      "url": "https://www.millenniumbcp.pt/campanhas/domiciliacao-ordenado",
+      "fallbackUrl": "https://www.millenniumbcp.pt",
       "description": "Campanha Millennium BCP domiciliação de ordenado",
       "checkFields": ["status", "expiryDate", "percentage", "maxNet"]
     },
     "abanca": {
       "url": "https://www.abanca.pt/pt/contas/campanha-domiciliacao-ordenado/",
+      "fallbackUrl": "https://www.abanca.pt",
       "description": "Campanha ABANCA domiciliação de ordenado",
       "checkFields": ["status", "expiryDate", "tiers"]
     },
     "activobank": {
       "url": "https://www.activobank.pt/ordenado",
+      "fallbackUrl": "https://www.activobank.pt",
       "description": "Campanha ActivoBank domiciliação de ordenado",
       "checkFields": ["status", "expiryDate", "bonusType"]
     },
     "santander": {
       "url": "https://www.santander.pt/campanhas/vantagens-ordenado",
+      "fallbackUrl": "https://www.santander.pt",
       "description": "Campanha Santander domiciliação de ordenado",
       "checkFields": ["status", "expiryDate", "tiers"]
     },
     "cgd": {
       "url": "https://www.cgd.pt/Particulares/Contas/Pages/Conta-Caixa.aspx",
+      "fallbackUrl": "https://www.cgd.pt/Particulares/Contas",
       "description": "Caixa Geral de Depósitos — Conta Caixa Ordenado",
       "checkFields": ["status", "minSalary"]
     },
     "novobanco": {
-      "url": "https://www.novobanco.pt/particulares/solucoes/contas-pacotes",
+      "url": "https://www.novobanco.pt/particulares/contas",
+      "fallbackUrl": "https://www.novobanco.pt",
       "description": "Novo Banco — Contas e Domiciliação de Ordenado",
       "checkFields": ["status", "minSalary"]
     },
     "montepio": {
-      "url": "https://www.bancomontepio.pt/particulares/contas/solucao-ordenado",
+      "url": "https://www.bancomontepio.pt/particulares",
+      "fallbackUrl": "https://www.bancomontepio.pt",
       "description": "Banco Montepio — Solução Ordenado",
       "checkFields": ["status", "minSalary"]
     },
     "creditoagricola": {
       "url": "https://www.creditoagricola.pt/para-mim/contas/conta-ordenado",
+      "fallbackUrl": "https://www.creditoagricola.pt",
       "description": "Crédito Agrícola — Conta Ordenado",
       "checkFields": ["status", "minSalary"]
     }

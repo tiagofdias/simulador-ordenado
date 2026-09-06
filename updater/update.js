@@ -2,6 +2,7 @@
  * Simulador de Domiciliação de Ordenado — Auto-Updater
  * 
  * Este script corre diariamente via GitHub Actions e:
+ * 0. Valida os URLs de todos os bancos — corrige automaticamente links partidos
  * 1. Consulta os sites oficiais dos bancos para verificar se as campanhas mudaram
  * 2. Consulta a taxa dos Certificados de Aforro no IGCP
  * 3. Atualiza o ficheiro data/banks.json se houver alterações
@@ -80,6 +81,129 @@ async function fetchWithRetry(url, config, retries = 2) {
       }
     }
   }
+}
+
+// ─── Lightweight URL health check (HEAD request) ───
+async function checkUrlHealth(url, config) {
+  const timeout = config.settings?.requestTimeoutMs || 15000;
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+
+    const resp = await fetch(url, {
+      method: 'HEAD',
+      signal: controller.signal,
+      redirect: 'follow',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7'
+      }
+    });
+
+    clearTimeout(timer);
+    return { ok: resp.ok, status: resp.status, redirected: resp.redirected, finalUrl: resp.url };
+  } catch (err) {
+    // Some servers reject HEAD — retry with GET
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeout);
+
+      const resp = await fetch(url, {
+        method: 'GET',
+        signal: controller.signal,
+        redirect: 'follow',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7'
+        }
+      });
+
+      clearTimeout(timer);
+      // Consume body to avoid leak
+      await resp.text();
+      return { ok: resp.ok, status: resp.status, redirected: resp.redirected, finalUrl: resp.url };
+    } catch (getErr) {
+      return { ok: false, status: 0, error: getErr.message };
+    }
+  }
+}
+
+// ─── Validate all bank URLs and auto-fix broken ones ───
+async function validateBankUrls(data, config) {
+  log('');
+  log('🔗 A validar URLs de todos os bancos...');
+  log('───────────────────────────────────────────');
+
+  const urlChanges = [];
+
+  for (const bank of data.banks) {
+    const source = config.sources[bank.id];
+    const currentUrl = bank.url;
+
+    if (!currentUrl) {
+      log(`  ⏭ ${bank.name}: sem URL definido`);
+      continue;
+    }
+
+    const health = await checkUrlHealth(currentUrl, config);
+
+    if (health.ok) {
+      log(`  ✅ ${bank.name}: URL OK (${health.status})`);
+    } else {
+      log(`  ❌ ${bank.name}: URL BROKEN (${health.status || health.error}) — ${currentUrl}`);
+
+      // Try the config source URL if different from current
+      if (source?.url && source.url !== currentUrl) {
+        const sourceHealth = await checkUrlHealth(source.url, config);
+        if (sourceHealth.ok) {
+          log(`  🔄 ${bank.name}: URL do config funciona — a atualizar para ${source.url}`);
+          bank.url = source.url;
+          urlChanges.push(`${bank.name}: URL corrigido → ${source.url}`);
+          continue;
+        }
+      }
+
+      // Try the fallback URL from config
+      if (source?.fallbackUrl) {
+        const fallbackHealth = await checkUrlHealth(source.fallbackUrl, config);
+        if (fallbackHealth.ok) {
+          log(`  🔄 ${bank.name}: a usar URL de fallback — ${source.fallbackUrl}`);
+          bank.url = source.fallbackUrl;
+          urlChanges.push(`${bank.name}: URL corrigido (fallback) → ${source.fallbackUrl}`);
+          continue;
+        }
+      }
+
+      // Last resort: try the bank's homepage (extract domain from current URL)
+      try {
+        const domain = new URL(currentUrl).origin;
+        const domainHealth = await checkUrlHealth(domain, config);
+        if (domainHealth.ok) {
+          log(`  🔄 ${bank.name}: a usar homepage do banco — ${domain}`);
+          bank.url = domain;
+          urlChanges.push(`${bank.name}: URL corrigido (homepage) → ${domain}`);
+          continue;
+        }
+      } catch { /* ignore URL parse errors */ }
+
+      log(`  ⚠️ ${bank.name}: NENHUM URL alternativo funciona — mantendo URL atual`);
+      urlChanges.push(`${bank.name}: URL PARTIDO e sem alternativa funcional — requer correção manual!`);
+    }
+
+    // Small delay between checks
+    await new Promise(r => setTimeout(r, 500));
+  }
+
+  log('───────────────────────────────────────────');
+  if (urlChanges.length === 0) {
+    log('✅ Todos os URLs estão funcionais.');
+  } else {
+    log(`⚠️ ${urlChanges.length} URL(s) corrigido(s) automaticamente.`);
+  }
+
+  return urlChanges;
 }
 
 // ─── Check if a campaign page is still active ───
@@ -258,6 +382,13 @@ async function main() {
 
   let hasChanges = false;
   const changes = [];
+
+  // 0. Validate all bank URLs — auto-fix any broken links
+  const urlChanges = await validateBankUrls(data, config);
+  if (urlChanges.length > 0) {
+    hasChanges = true;
+    urlChanges.forEach(c => changes.push(c));
+  }
 
   // 1. Check CA rate
   const newCARate = await fetchCARate(config);
