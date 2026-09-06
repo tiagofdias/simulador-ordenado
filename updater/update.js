@@ -354,23 +354,22 @@ async function main() {
     await new Promise(r => setTimeout(r, 1500));
   }
 
-  // 3. Update lastUpdated date
+  // 3. Always update lastUpdated to reflect the last verification date
+  data.lastUpdated = today.toISOString().split('T')[0];
   if (hasChanges) {
-    data.lastUpdated = today.toISOString().split('T')[0];
     data.dataVersion = (data.dataVersion || 1) + 1;
   }
 
-  // 4. Write updated data
+  // 4. Write updated data (always, so lastUpdated is persisted)
+  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), 'utf-8');
+
+  log('');
+  log('═══════════════════════════════════════════');
   if (hasChanges) {
-    writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), 'utf-8');
-    log('');
-    log('═══════════════════════════════════════════');
     log('✅ Dados atualizados com sucesso!');
     log('Alterações:');
     changes.forEach(c => log(`  • ${c}`));
   } else {
-    log('');
-    log('═══════════════════════════════════════════');
     log('✅ Sem alterações — dados já estão atualizados.');
     if (changes.length > 0) {
       log('ℹ️ Notas (não resultaram em alterações automáticas):');
