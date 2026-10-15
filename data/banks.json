@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-10-14",
-  "dataVersion": 46,
+  "lastUpdated": "2026-10-15",
+  "dataVersion": 47,
   "caRate": {
     "serieF": {
       "baseRate": 0.025,
@@ -45,8 +45,8 @@
       "name": "Millennium BCP",
       "expiryDate": "2026-10-15",
       "url": "https://www.millenniumbcp.pt/campanhas/domiciliacao-ordenado",
-      "status": "active",
-      "statusLabel": "Ativo até 15/10/2026",
+      "status": "expired",
+      "statusLabel": "Expirado em 15/10/2026",
       "minSalary": 1000,
       "bonusType": "dinheiro",
       "bonusNote": "20% do ordenado líquido (BCP suporta IRS), máx. 500 € líquidos",
