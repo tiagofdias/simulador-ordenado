@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-10-30",
-  "dataVersion": 62,
+  "lastUpdated": "2026-10-31",
+  "dataVersion": 63,
   "caRate": {
     "serieF": {
       "baseRate": 0.025,
@@ -107,8 +107,8 @@
       "name": "ActivoBank",
       "expiryDate": "2026-10-31",
       "url": "https://www.activobank.pt/ordenado",
-      "status": "active",
-      "statusLabel": "Ativo set–out 2026",
+      "status": "expired",
+      "statusLabel": "Expirado em 31/10/2026",
       "minSalary": 900,
       "bonusType": "voucher_amazon",
       "bonusNote": "200 € em Cartão Oferta Amazon.es",
@@ -129,8 +129,8 @@
       "name": "Santander",
       "expiryDate": "2026-10-31",
       "url": "https://www.santander.pt/campanhas/vantagens-ordenado",
-      "status": "active",
-      "statusLabel": "Ativo até 31/10/2026",
+      "status": "expired",
+      "statusLabel": "Expirado em 31/10/2026",
       "minSalary": 850,
       "bonusType": "dinheiro",
       "bonusNote": "500 € (ordenado > 1 200 €) ou 100 € (ordenado 850–1 200 €)",
